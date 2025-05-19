@@ -9,10 +9,11 @@ st.title("📝 Attendance Module")
 current_user = st.session_state.get("user", {}).get("username", "system")
 
 
-def run():    
+def run(): 
+
     # Fetch employees
     try:
-        employee_df = pd.read_sql("SELECT id, first_name, last_name FROM employee_data", get_engine())
+        employee_df = pd.read_sql("SELECT id, first_name, last_name, department FROM employee_data", get_engine())
         if employee_df.empty:
             st.warning("⚠️ No employees available to take attendance for.")
         else:
@@ -22,6 +23,13 @@ def run():
         st.error("⚠️ Could not load employee list. Check your database.")
         st.exception(e)
         st.stop()
+
+   
+
+
+    # department = employee_df.loc[employee_df['id'] == selected_id, 'department'].values[0]
+
+
 
     if not employee_df.empty:
         with st.form("attendance_form"):
@@ -46,8 +54,18 @@ def run():
             submitted = st.form_submit_button("Submit Attendance")
 
             if submitted:
+
+                # Find the employee ID based on the selected name
+                selected_index = employee_options.index(employee_name)
+                selected_id = employee_ids[selected_index]
+
+                # Now get the department of the selected employee
+                department = employee_df.loc[employee_df['id'] == selected_id, 'department'].values[0]
+
                 if days_present + days_absent > 20:
                     st.warning("🚫 The sum of Days Present and Days Absent cannot exceed 20.")
+                elif not department:
+                    st.warning("🚫 This employee's initial records have not been updated, please contact an Editor or an Admin")
                 else:
                     now = datetime.datetime.now()
                     current_date = now.strftime("%Y-%m-%d")

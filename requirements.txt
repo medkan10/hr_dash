@@ -6,3 +6,4 @@ datetime
 importlib
 numpy
 bcrypt
+openpyxl

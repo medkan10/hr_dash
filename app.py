@@ -22,7 +22,6 @@ PAGE_CONFIG = {
         "Users": "users",  # Optional admin-only page
         # "Clear Database": "delete_all" 
     },
-
     "Editor": {
         "Welcome": "welcome",
         "Dashboard": "dashboard",
@@ -31,14 +30,13 @@ PAGE_CONFIG = {
         "Attendance": "attendance",
         "Reclassification": "reclassification"
     },
+
     "Headcount": {
         "Welcome": "welcome",
         "Dashboard": "dashboard",
         "Edit Employees": "edit_employees"
-        # "Add Employee": "add_employee",
-        # "Attendance": "attendance",
-        # "Reclassification": "reclassification"
     },
+
     "Viewer": {
         "Welcome": "welcome",
         "Dashboard": "dashboard"

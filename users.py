@@ -29,7 +29,7 @@ def run():
         last_name = st.text_input("Last Name")
         new_username = st.text_input("Username")
         new_password = st.text_input("Password", type="password")
-        new_role = st.selectbox("Role", ["Admin", "Editor", "Viewer", "Attendance Officer", "Reclassifier"])
+        new_role = st.selectbox("Role", ["Admin", "Editor", "Viewer", "Headcount", "Attendance Officer", "Reclassifier"])
         submit_btn = st.form_submit_button("Register")
     
         if submit_btn:

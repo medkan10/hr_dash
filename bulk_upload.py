@@ -36,19 +36,19 @@ def run():
                     with engine.begin() as conn:
                         for _, row in df.iterrows():
                             conn.execute(text("""
-                                INSERT INTO employee_data (first_name, middle_name, last_name, nir_number, current_position, gross_salary, category :category, :created_by, :created_on, :created_at)
+                                INSERT INTO employee_data (first_name, middle_name, last_name, nir_number, current_position, gross_salary, category, created_by, created_on, created_at)
                                 VALUES (:first_name, :middle_name, :last_name, :nir_number, :current_position, :gross_salary, :category, :created_by, :created_on, :created_at)
                             """), {
                                 "first_name": row["first_name"],
                                 "middle_name": row["middle_name"],
                                 "last_name": row["last_name"],
-                                "nir_number": int(row["nir_number"]),
+                                "nir_number": row["nir_number"],
                                 "current_position": row["current_position"],
                                 "gross_salary": row["gross_salary"],
                                 "category": row["category"],
                                 "created_by":current_user,
-                            "created_on": created_on,
-                            "created_at": created_at
+                                "created_on": created_on,
+                                "created_at": created_at
                             })
                     st.success("✅ Employees uploaded successfully!")
         except Exception as e:

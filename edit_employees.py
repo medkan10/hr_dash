@@ -40,8 +40,10 @@ def run():
         sex = st.selectbox("Sex", sex_options, index=sex_options.index(default_sex))
         grade = st.text_input("Grade", safe_value("grade"))
         qualification = st.text_input("Qualification", safe_value("qualification"))
+        qualification_2 = st.text_input("Qualification", placeholder="Optional Qualification 1")
+        qualification_3 = st.text_input("Qualification", placeholder="Optional Qualification 2")
         current_position = st.text_input("Current Position", safe_value("current_position"), disabled=True)
-        gross_salary = st.number_input("Gross Salary", value=float(safe_value("gross_salary", 0)))
+        gross_salary = st.number_input("Gross Salary", value=float(safe_value("gross_salary", 0)), disabled=True)
         dob = st.date_input("Date of Birth", pd.to_datetime(safe_value("dob", "2000-01-01")))
         doe = st.date_input("Date of Employment", pd.to_datetime(safe_value("doe", "2020-01-01")))
         nir_number = st.text_input("NIR Number", safe_value("nir_number"))
@@ -65,6 +67,8 @@ def run():
                         sex = :sex,
                         grade = :grade,
                         qualification = :qualification,
+                        qualification_2 = :qualification_2,
+                        qualification_3 = :qualification_3,           
                         current_position = :current_position,
                         gross_salary = :gross_salary,
                         dob = :dob,
@@ -87,6 +91,8 @@ def run():
                         "sex": sex,
                         "grade": grade,
                         "qualification": qualification,
+                        "qualification_2": qualification_2,
+                        "qualification_3": qualification_3,
                         "current_position": current_position,
                         "gross_salary": gross_salary,
                         "dob": dob,

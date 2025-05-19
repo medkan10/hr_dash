@@ -47,7 +47,9 @@ def run():
         department_from = st.text_input("Department From", value=department, disabled=True)
         department_to = st.text_input("Department To")
         qualification = st.text_input("Qualification")
-        reason = st.text_area("Reason for Reclassification")
+        qualification_2 = st.text_input("Optional Qualification 1")
+        qualification_3 = st.text_input("Optional Qualification 2")
+        reason = st.selectbox("Reason for Reclassification", ["Misplaced", "Over-Qualified", "Under-Qualified"])
         new_position = st.text_input("New Position")
         username = current_user
 
@@ -76,6 +78,8 @@ def run():
                                 department_from = :department_from,
                                 department_to = :department_to,
                                 qualification = :qualification,
+                                qualification_2 = :qualification_2,
+                                qualification_3 = :qualification_3,
                                 reason = :reason,
                                 new_position = :new_position,
                                 username = :username,
@@ -88,6 +92,8 @@ def run():
                             "department_from": department,
                             "department_to": department_to,
                             "qualification": qualification,
+                            "qualification_2" :qualification_2,
+                            "qualification_3" :qualification_3,
                             "reason": reason,
                             "new_position": new_position,
                             "username": username,
@@ -99,10 +105,10 @@ def run():
                         conn.execute(text("""
                             INSERT INTO reclassification (
                                 id, current_position, department_from, department_to,
-                                qualification, reason, new_position, username, date, time
+                                qualification, qualification_2, qualification_3, reason, new_position, username, date, time
                             ) VALUES (
                                 :id, :current_position, :department_from, :department_to,
-                                :qualification, :reason, :new_position, :username, :date, :time
+                                :qualification, :qualification_2, :qualification_3, :reason, :new_position, :username, :date, :time
                             )
                         """), {
                             "id": selected_employee_id,
@@ -110,6 +116,8 @@ def run():
                             "department_from": department,
                             "department_to": department_to,
                             "qualification": qualification,
+                            "qualification_2" :qualification_2,
+                            "qualification_3" :qualification_3,
                             "reason": reason,
                             "new_position": new_position,
                             "username": username,
@@ -123,7 +131,7 @@ def run():
     try:
         df = pd.read_sql("""
             SELECT ed.first_name, ed.last_name, r.current_position, r.department_from, r.department_to,
-                   r.qualification, r.reason, r.new_position
+                   r.qualification, r.qualification_2, r.qualification_3, r.reason, r.new_position
             FROM reclassification r
             JOIN employee_data ed ON r.id = ed.id
             ORDER BY r.id DESC

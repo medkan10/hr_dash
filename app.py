@@ -19,7 +19,8 @@ PAGE_CONFIG = {
         "Delete Employees": "delete_employee",
         "Trash Management": "trash_management",
         "Bulk Upload": "bulk_upload",
-        "Users": "users"  # Optional admin-only page
+        "Users": "users",  # Optional admin-only page
+        "Clear Database": "delete_all" 
     },
     "Editor": {
         "Welcome": "welcome",

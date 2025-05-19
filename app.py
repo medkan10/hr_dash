@@ -34,8 +34,8 @@ PAGE_CONFIG = {
     "Headcount": {
         "Welcome": "welcome",
         "Dashboard": "dashboard",
-        # "Add Employee": "add_employee",
         "Edit Employees": "edit_employees"
+        # "Add Employee": "add_employee",
         # "Attendance": "attendance",
         # "Reclassification": "reclassification"
     },
